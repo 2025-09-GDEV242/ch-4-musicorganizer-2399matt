@@ -182,6 +182,9 @@ public class MusicOrganizer
         playTrack(index);
     }
     
+    /**
+     * Random shuffle with set. If add returns false, go to next iteration, else play the track.
+     */
     public void randomShuffle(){
         Set<Integer> visited = new HashSet<>();
         Random rand = new Random();
@@ -194,6 +197,24 @@ public class MusicOrganizer
             }else{
                 continue;
             }
+        }
+    }
+    
+    /**
+     * Random shuffle without set. Add visited indicies to a list, roll a number on each iteration
+     * if it's already in the list, roll until we get a new one, else play the track.
+     */
+    public void randomShuffleTwo(){
+        Random rand = new Random();
+        List<Integer> visited = new ArrayList<>();
+        for(int i = 0; i < tracks.size(); i++){
+            int index = rand.nextInt(tracks.size());
+            while(visited.contains(index)){
+                index = rand.nextInt(tracks.size());
+            }
+            System.out.println("---->"+index);
+            visited.add(index);
+            playTrack(index);
         }
     }
 }

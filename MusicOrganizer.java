@@ -18,12 +18,15 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    
+    private Random rand;
 
     /**
      * Create a MusicOrganizer
      */
     public MusicOrganizer()
     {
+        rand = new Random();
         tracks = new ArrayList<>();
         player = new MusicPlayer();
         reader = new TrackReader();
@@ -175,7 +178,6 @@ public class MusicOrganizer
     }
     
     public void playRandom(){
-        Random rand = new Random();
         int bounds = tracks.size();
         int index = rand.nextInt(bounds);
         System.out.println(index);
@@ -187,7 +189,6 @@ public class MusicOrganizer
      */
     public void randomShuffle(){
         Set<Integer> visited = new HashSet<>();
-        Random rand = new Random();
         boolean playedAll = false;
         while(!(visited.size() == tracks.size())){
             int index = rand.nextInt(tracks.size());
@@ -205,7 +206,6 @@ public class MusicOrganizer
      * if it's already in the list, roll until we get a new one, else play the track.
      */
     public void randomShuffleTwo(){
-        Random rand = new Random();
         List<Integer> visited = new ArrayList<>();
         for(int i = 0; i < tracks.size(); i++){
             int index = rand.nextInt(tracks.size());

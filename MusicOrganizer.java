@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.List;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -168,6 +171,29 @@ public class MusicOrganizer
         // Put all thetracks into the organizer.
         for(Track track : tempTracks) {
             addTrack(track);
+        }
+    }
+    
+    public void playRandom(){
+        Random rand = new Random();
+        int bounds = tracks.size();
+        int index = rand.nextInt(bounds);
+        System.out.println(index);
+        playTrack(index);
+    }
+    
+    public void randomShuffle(){
+        Set<Integer> visited = new HashSet<>();
+        Random rand = new Random();
+        boolean playedAll = false;
+        while(!(visited.size() == tracks.size())){
+            int index = rand.nextInt(tracks.size());
+            if(visited.add(index)){
+                System.out.println(index);
+                playTrack(index);
+            }else{
+                continue;
+            }
         }
     }
 }
